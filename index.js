@@ -8,12 +8,14 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const db = require('./Database/mongooseConnection');
+const appRoute = require('./routes/app');
 const employeesRoute = require('./routes/employeesRoute');
 const adminRoute = require('./routes/adminroute');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+app.use('/', appRoute);
 app.use('/employees', employeesRoute);
 app.use('/admin', adminRoute);
 

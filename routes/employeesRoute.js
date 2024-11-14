@@ -21,25 +21,12 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-// Register route for new employees
-router.post('/register', async (req, res) => {
-    try {
-        
-         const {name, email, password} = req.body;
-         const hashedPassword = await bcrypt.hash(password, 10);
-         const employee = await Employee.create({name, email, password: hashedPassword});
-         res.status(200).json({message: "User registered successfully", employee});
-         console.log(employee);
-    } catch (error) {
-        console.error("Error in registration:", error);
-        res.status(500).json({ message: "Email already exists", error: error.message });
-        console.log(error)
-    }
-});
+// Register route 
 
 
 
-// Login route for employees
+
+// Login route 
 router.post('/login', async (req, res) => {
     try {
         const employee = await Employee.findOne({ email: req.body.email });
